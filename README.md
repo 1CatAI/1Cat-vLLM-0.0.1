@@ -120,7 +120,7 @@ Notes:
 
 - The submodule points to the `1CatAI/lmdeploy` fork that already contains the
   SM70 compatibility changes required by this branch.
-- It is pinned to fork commit `159b0ab1db2d2496b57dbb19dd43f0d0db1c4257` for
+- It is pinned to fork commit `159b0ab8b7b7442082bcab8b8a7dd008c40c7b58` for
   reproducible builds.
 - If you cloned the repository without submodules, run the command above before
   building.
