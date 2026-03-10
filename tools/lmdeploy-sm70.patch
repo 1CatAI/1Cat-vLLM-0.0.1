@@ -1,0 +1,43 @@
+diff --git a/src/turbomind/kernels/core/mma.h b/src/turbomind/kernels/core/mma.h
+index 768cdcbe..8a9ebaf5 100644
+--- a/src/turbomind/kernels/core/mma.h
++++ b/src/turbomind/kernels/core/mma.h
+@@ -5,6 +5,7 @@
+ #include "src/turbomind/kernels/core/array.h"
+ #include "src/turbomind/kernels/core/common.h"
+ #include <cassert>
++#include <cuda_bf16.h>
+ 
+ namespace turbomind {
+ 
+diff --git a/src/turbomind/kernels/gemm/kernel/sm70_884_4.cu b/src/turbomind/kernels/gemm/kernel/sm70_884_4.cu
+index 707fd4a2..b5510d80 100644
+--- a/src/turbomind/kernels/gemm/kernel/sm70_884_4.cu
++++ b/src/turbomind/kernels/gemm/kernel/sm70_884_4.cu
+@@ -36,6 +36,7 @@ void Registry::sm70_884_4()
+ 
+     if constexpr (1) {
+         // clang-format off
++        // GroupSizeV=128
+         using C = Config_U4_g<kColMajor>;
+         Add<C::Type<128, 256,  16, 2, 4, 1, D, D, 2,   0 , 1, 128, 128, 128>>();
+         Add<C::Type<128, 128,  16, 2, 2, 1, D, D, 2, true, 1, 128,  64, 128>>();
+@@ -48,6 +49,18 @@ void Registry::sm70_884_4()
+         Add<C::Type< 16, 128,  32, 1, 4, 1, D, S, 2, true, 1, 128>>();
+         Add<C::Type< 16, 256,  32, 1, 4, 1, D, S, 2, true, 1, 128>>();
+         Add<C::Type<  8, 128,  64, 1, 4, 1, D, S, 2, true, 1, 128>>();
++        // GroupSizeV=64
++        Add<C::Type<128, 128,  16, 2, 2, 1, D, D, 2, true, 1, 64,  64, 128>>();
++        Add<C::Type< 64, 128,  32, 1, 4, 1, D, S, 2, true, 1, 64,  32, 128>>();
++        Add<C::Type< 32, 128,  32, 1, 4, 1, D, S, 2, true, 1, 64>>();
++        Add<C::Type< 16, 128,  32, 1, 4, 1, D, S, 2, true, 1, 64>>();
++        Add<C::Type<  8, 128,  64, 1, 4, 1, D, S, 2, true, 1, 64>>();
++        // GroupSizeV=32
++        Add<C::Type<128, 128,  16, 2, 2, 1, D, D, 2, true, 1, 32,  64, 128>>();
++        Add<C::Type< 64, 128,  32, 1, 4, 1, D, S, 2, true, 1, 32,  32, 128>>();
++        Add<C::Type< 32, 128,  32, 1, 4, 1, D, S, 2, true, 1, 32>>();
++        Add<C::Type< 16, 128,  32, 1, 4, 1, D, S, 2, true, 1, 32>>();
++        Add<C::Type<  8, 128,  64, 1, 4, 1, D, S, 2, true, 1, 32>>();
+         // clang-format on
+     }
+ 
