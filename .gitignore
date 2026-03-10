@@ -243,5 +243,6 @@ vllm/grpc/vllm_engine_pb2.py
 vllm/grpc/vllm_engine_pb2_grpc.py
 vllm/grpc/vllm_engine_pb2.pyi
 1Cat-vLLM.zip
+lmdeploy.zip
 vllm-开源备份.zip
 1Cat-vLLM/
