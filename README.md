@@ -1,5 +1,4 @@
-# 1Cat-vLLM-0.0.1
-# A vLLM SM70 AWQ Branch
+# 1Cat-vLLM-0.0.1————A vLLM SM70 AWQ Branch
 
 An experimental vLLM fork for **Tesla V100 / SM70** that enables
 **AWQ 4-bit inference on Volta GPUs**.
